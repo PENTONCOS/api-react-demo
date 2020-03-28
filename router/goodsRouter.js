@@ -1,7 +1,7 @@
 // 物品管理平台
 const express = require('express');
 const router = express.Router();
-const { insertGoods, findGoods,findGoodsById, delGoods, updateGoods, findGoodsByPage } = require('../controls/goodsControl');
+const { insertGoods, findGoods,findGoodsById,updatePutaway, delGoods, updateGoods, findGoodsByPage } = require('../controls/goodsControl');
 
 /**
  * @api {post} /admin/goods/add 添加物品
@@ -105,7 +105,7 @@ router.post('/del', (req, res) => {
  * @apiParam {String} path 物品缩略图
  * @apiParam {String} desc 物品性能描述
  * @apiParam {String} unit 物品单位
- * @apiParam {String} kind 物品类别
+ * @apiParam {String} _id 物品所对应的id值
  * @apiParam {Number} putaway 物品状态
  *
  * @apiSuccess {Number} err 状态码
@@ -114,6 +114,28 @@ router.post('/del', (req, res) => {
 router.post('/update', (req, res) => {
     let {  name, stock, price, path, desc, unit,kind, putaway } = req.body;
     updateGoods(name, {  name, stock, price, path, desc, unit,kind, putaway})
+        .then(() => {
+            res.send({ err: 0, msg: '修改成功' });
+        })
+        .catch((data) => {
+            console.log(data);
+            res.send({ err: -1, msg: '修改失败，请重试' });
+        })
+})
+/**
+ * @api {post} /admin/goods/updatePutaway 更新上架信息
+ * @apiName updatePutaway
+ * @apiGroup goods
+ *
+ * @apiParam {String} _id 物品所对应的id值
+ * @apiParam {Number} putaway 物品状态
+ *
+ * @apiSuccess {Number} err 状态码
+ * @apiSuccess {String} msg 信息提示
+ */
+router.post('/updatePutaway', (req, res) => {
+    let {  _id, putaway } = req.body;
+    updatePutaway(_id,  putaway)
         .then(() => {
             res.send({ err: 0, msg: '修改成功' });
         })

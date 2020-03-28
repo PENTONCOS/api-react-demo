@@ -22,6 +22,11 @@ let findGoodsById = async (_id) => {
     let result = await goodsModel.find({ _id });
     return result;
 }
+// 根据id更新上架信息
+let updatePutaway =async (_id, putaway) =>{
+    let result = await goodsModel.updateOne({_id},{putaway})
+    return result;
+}
 // 删除物品
 let delGoods = async (_id) => {
     let result = await goodsModel.deleteOne({ _id })
@@ -82,4 +87,4 @@ let findGoodsByKw = async (page, pageSize, keyword) => {
 }
 
 
-module.exports = { insertGoods, findGoods, findGoodsById, delGoods, updateGoods, findGoodsByPage, findGoodsByBrand, findGoodsByKw };
+module.exports = { insertGoods, findGoods, findGoodsById, updatePutaway,delGoods, updateGoods, findGoodsByPage, findGoodsByBrand, findGoodsByKw };
