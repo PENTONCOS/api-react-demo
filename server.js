@@ -20,6 +20,9 @@ app.use('/admin/user', userRouter);
 // 物品操作模块
 let goodsRouter = require('./router/goodsRouter');
 app.use('/admin/goods', goodsRouter);
+// 物品操作模块
+let kindRouter = require('./router/kindRouter');
+app.use('/admin/goodskind', kindRouter);
 
 app.listen(3333, () => {
     console.log(`/**
