@@ -33,8 +33,8 @@ let delGoods = async (_id) => {
     return result;
 }
 // 更新信息
-let updateGoods = async (name, updateInfos) => {
-    let result = await goodsModel.updateOne({ name }, updateInfos)
+let updateGoods = async (_id, updateInfos) => {
+    let result = await goodsModel.updateOne({ _id }, updateInfos)
     return result;
 }
 //分页查询

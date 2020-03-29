@@ -7,7 +7,7 @@ let goodsSchema = new mongoose.Schema({
     stock: { type: Number, required: true },
     price: { type: Number, required: true },
     path: { type: String, required: true },
-    desc: { type: String, required: true },
+    desc: { type: Number, required: true },
     unit: { type: String, required: true },
     kind: { type: String, required: true },
     putaway: { type: Number, required: true },

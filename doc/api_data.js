@@ -795,6 +795,13 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
+            "field": "_id",
+            "description": "<p>物品所对应的id值</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
             "field": "name",
             "description": "<p>物品型号</p>"
           },
@@ -832,13 +839,6 @@ define({ "api": [
             "optional": false,
             "field": "unit",
             "description": "<p>物品单位</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "_id",
-            "description": "<p>物品所对应的id值</p>"
           },
           {
             "group": "Parameter",

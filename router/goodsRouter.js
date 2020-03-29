@@ -99,21 +99,21 @@ router.post('/del', (req, res) => {
  * @apiName update
  * @apiGroup goods
  *
+ * @apiParam {String} _id 物品所对应的id值
  * @apiParam {String} name 物品型号
  * @apiParam {Number} stock 物品库存
  * @apiParam {Number} price 物品价格
  * @apiParam {String} path 物品缩略图
  * @apiParam {String} desc 物品性能描述
  * @apiParam {String} unit 物品单位
- * @apiParam {String} _id 物品所对应的id值
  * @apiParam {Number} putaway 物品状态
  *
  * @apiSuccess {Number} err 状态码
  * @apiSuccess {String} msg 信息提示
  */
 router.post('/update', (req, res) => {
-    let {  name, stock, price, path, desc, unit,kind, putaway } = req.body;
-    updateGoods(name, {  name, stock, price, path, desc, unit,kind, putaway})
+    let {  _id,name, stock, price, path, desc, unit,kind, putaway } = req.body;
+    updateGoods(_id, {  name, stock, price, path, desc, unit,kind, putaway})
         .then(() => {
             res.send({ err: 0, msg: '修改成功' });
         })
