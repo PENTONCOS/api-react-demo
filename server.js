@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser')
 const app = express();
+const path = require('path');
+
 
 //启动服务器的时候同时启动数据库
 require('./db/connect');
@@ -9,6 +11,8 @@ require('./db/connect');
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
+//静态资源路径
+app.use('/public', express.static(path.join(__dirname, './public')));
 
 //用路由的方法加入各个模块
 // 文件上传的模块
