@@ -1,7 +1,7 @@
 // 物品管理平台
 const express = require('express');
 const router = express.Router();
-const { insertGoods, findGoods,findGoodsById,updatePutaway, delGoods, updateGoods, findGoodsByPage } = require('../controls/goodsControl');
+const { insertGoods, findGoods,findGoodsById,updatePutaway, delGoods, updateGoods, findGoodsByPage,findGoodsByKw } = require('../controls/goodsControl');
 
 /**
  * @api {post} /admin/goods/add 添加物品
@@ -192,11 +192,10 @@ router.post('/getInfosByKw', (req, res) => {
     let keyword = req.body.keyword;
     findGoodsByKw(page, pageSize, keyword)
         .then((data) => {
-            console.log(keyword);
             let { result, sumCount } = data;
             res.send({ err: 0, msg: '查询成功', list: result, sumCount });
         })
-        .catch(() => {
+        .catch((err) => {
             res.send({ err: -1, msg: '查询失败请重试' })
         })
 })

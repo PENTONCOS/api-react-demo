@@ -72,8 +72,8 @@ let findGoodsByBrand = async (brand, page, pageSize) => {
 //模糊查询 关键字查询
 let findGoodsByKw = async (page, pageSize, keyword) => {
     let regex = new RegExp(keyword);
-
-    let allGoodss = await goodsModel.find({ $or: [{ name: { $regex: regex } }, { brand: { $regex: regex } }, { desc: { $regex: regex } }] });
+    let allGoodss = await goodsModel.find({ $or: [{ name: { $regex: regex }}, {kind:{$regex: regex}}] });
+    console.log(allGoodss)
     let sumCount = allGoodss.length;
     if (page > Math.ceil(sumCount / pageSize)) {
         page = Math.ceil(sumCount / pageSize);
@@ -81,8 +81,8 @@ let findGoodsByKw = async (page, pageSize, keyword) => {
     if (pageSize >= sumCount) {
         pageSize = sumCount;
     }
-    let result = await goodsModel.find({ $or: [{ name: { $regex: regex } }, { brand: { $regex: regex } }, { desc: { $regex: regex } }] }).skip((Number(page) - 1) * pageSize).limit(Number(pageSize));
-
+    let result = await goodsModel.find({ $or: [{ name: { $regex: regex }}, {kind:{$regex: regex}}] }).skip((Number(page) - 1) * pageSize).limit(Number(pageSize));
+    console.log(result)
     return { result, sumCount };
 }
 
